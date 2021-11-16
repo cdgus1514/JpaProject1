@@ -100,9 +100,4 @@ public class OrderRepository {
         TypedQuery<Order> query = em.createQuery(cq).setMaxResults(1000);
         return query.getResultList();
     }
-
-
-
-
-
 }
