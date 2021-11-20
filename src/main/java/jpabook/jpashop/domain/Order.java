@@ -22,6 +22,9 @@ public class Order {
     @Column(name = "order_id")
     private Long id;
 
+    // 지연로딩 시 디비에서 직접 데이터를 가졎오지 않음
+    // hibernate에서 해당 객체를 상속받아서 proxy 객체를 생성 후 가짜데이터 넣어둠(bytebuddy 라이브러리)
+    // 해당 객체를 사용할 때 proxy 초기화(실젲 디비에서 데이터 조회 후 사용)
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
