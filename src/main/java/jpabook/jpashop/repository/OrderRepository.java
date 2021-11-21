@@ -1,6 +1,7 @@
 package jpabook.jpashop.repository;
 
 import jpabook.jpashop.domain.Order;
+import jpabook.jpashop.repository.order.simplequery.OrderSimpleQueryDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
@@ -103,7 +104,7 @@ public class OrderRepository {
 
 
     /**
-     * 패치조인
+     * 패치조인(재사용성 높음)
      * @return
      */
     public List<Order> findAllWithMemberDelivery() {
