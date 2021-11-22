@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,6 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static javax.persistence.FetchType.*;
+
+
+
+
+// @ToOne 관계에서 배치사이즈 사용하는 경우 (그냥 패치조인으로 처리)
+//@BatchSize(size = 100)
 
 @Entity
 @Getter @Setter
@@ -29,6 +36,8 @@ public class Order {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    // 컬렉션인 경우 패치조인을 사용할 경우 페이징 처리 불가능 -> 지연로딩+배치사이즞 사용
+    @BatchSize(size = 100)
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
